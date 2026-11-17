@@ -28,7 +28,11 @@ jobs:
       - name: Extract Android project
         run: |
           mkdir -p android-project
-          unzip -q CLASH_AI_Android_GitHub_Build.zip -d android-project
+          unzip -q ClashAI_Android_GitHub_Build.zip -d android-project
+
+      - name: Check Android project
+        run: |
+          find android-project -maxdepth 3 -type f | head -50
 
       - name: Build APK
         working-directory: android-project/ClashAI_Android

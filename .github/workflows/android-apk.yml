@@ -32,7 +32,18 @@ jobs:
 
       - name: Check Android project
         run: |
-          find android-project -maxdepth 3 -type f | head -50
+          find android-project -maxdepth 4 -type f | head -80
+
+      - name: Inspect Gradle configuration
+        run: |
+          cd android-project/ClashAI_Android
+
+          for f in build.gradle.kts settings.gradle.kts gradle.properties app/build.gradle.kts; do
+            if [ -f "$f" ]; then
+              echo "========== $f =========="
+              cat "$f"
+            fi
+          done
 
       - name: Build APK
         working-directory: android-project/ClashAI_Android
